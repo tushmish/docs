@@ -115,3 +115,26 @@ the following:
 
 This operation does nothing because there is no field named
 ``wife``.
+
+Rename a Field That Already Exists
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+If the document already has a field with the *new* field name, the
+:update:`$rename` operator removes that field and renames the
+field with the *old* field name to the *new* field name.
+
+.. code-block:: javascript
+   
+   db.student.update( {"_id": 1}, { $rename : { nmae : 'alias'}})
+   
+This operation results in
+
+.. code-block:: javascript
+
+   {
+        "_id" : 1,
+        "mobile" : "555-555-5555",
+        "alias" : {
+                "first" : "george",
+                "last" : "washington"
+        }
+   }
